@@ -27,7 +27,7 @@ create role--> ec2,add amazonec2roleforssm,name:demo-ec2-role
 Launch and configure an RDS instance to serve as the backend database.
 open RDS--->click subnet groups, create-->name:DB-SNGP,az:1a,1b; subnets:db1 and DB2
 click on databse--> standard,mysql,version:8.0.35,free tier,
-settings-->credentendials: self managed,pw:koti2025,burstable:db.t4,sg:rds-sg
+settings-->credentendials: self managed,pw:koti2025,burstable:db.t4,sg:rds-sg, uncheck backup-->create
 
 4. Application Tier Setup
 Deploy application-tier resources, including the configuration of an internal load balancer for traffic distribution within the tier.
