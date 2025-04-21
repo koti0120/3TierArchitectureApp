@@ -32,6 +32,15 @@ settings-->credentendials: self managed,pw:koti2025,burstable:db.t4,sg:rds-sg, u
 4. Application Tier Setup
 Deploy application-tier resources, including the configuration of an internal load balancer for traffic distribution within the tier.
 
+Create private instance ec2-->name:AppTierInstance, choose amazon linux,t2.micro,subnet:app1,SG:app-SG,attatch IAM role..
+
+connect through session manager 
+sudo su
+cd ..
+pwd---> you are in usr 
+cd /home/ec2-user
+ping 8.8.8.8
+
 5. Web Tier Setup
 Provision web-tier resources and set up an external load balancer to manage incoming traffic from users.
 
@@ -69,7 +78,7 @@ sudo yum install mysql -y
 
 Configure MySQL Database
 Connect to the database and perform basic configuration: Replace below info with your DB information
-mysql -h <DB EndPoint> -u admin -p ----> Enter the Password i.e kastro2025 (this is DB password). If you couldn't connect, there is a problem with the SG of the DB.
+mysql -h <DB EndPoint> -u admin -p ----> Enter the Password i.e koti 2025 (this is DB password). If you couldn't connect, there is a problem with the SG of the DB.
 
 Ex: mysql -h database-1.c380a08uukyc.ap-south-1.rds.amazonaws.com -u admin -p
 
