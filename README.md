@@ -12,6 +12,7 @@ A 3-Tier Architecture app separates the presentation, application, and database 
 - **EC2**  
 - **RDS**  
 - **Route 53**
+- **Certificate Manager**
 
 
 ## 🚀 **3 Tier-Architecture:**

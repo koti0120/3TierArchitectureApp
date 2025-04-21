@@ -6,13 +6,28 @@ Steps for Setting Up the Project Infrastructure
 *******************************************
 1. VPC Creation
 Design and create a Virtual Private Cloud (VPC) to serve as the foundation for the project infrastructure.
+goto vpc-->create vpc-->choose vpc and more-->name:demo-vpc,cidr:192.168.0.0/22, az=select 2,public= choose 2, private=4,Nat=choose 1,vpc endpoints=none-->create
+Rename :
+vpc = demo vpc,private1,2 subnets= remove private and add app1,app2, private3,4= remove private and add DB1,DB2, public subnets= public1,public2
+
+create SG: we need 5
+1.name:web-ALB-SG, add rule: ttps ,anywhere==>external LB
+2.name:web-SG,add rule:http ,source: custom, select ALB-SG and hhtp,custom:192.168.0.0/22
+3.name:App-SG,add rule:custom tcp, port:4000, source:custom,192.168.0.0/22
+4.name:Internal-ALB-SG,add rule:http, source:custom:192.168.0.0/22
+5.name:RDS-SG,add rule: type: mysql/aurora,custom:192.168.0.0/22
 
 2. S3 Bucket and IAM Role Setup
-Create an S3 bucket and upload the application code.
+Create an S3 bucket-->name:demo-3tier-project,and upload the application code.
+
 Set up an IAM role with the necessary permissions and attach it to the EC2 instance.
+create role--> ec2,add amazonec2roleforssm,name:demo-ec2-role
 
 3. Database Configuration
 Launch and configure an RDS instance to serve as the backend database.
+open RDS--->click subnet groups, create-->name:DB-SNGP,az:1a,1b; subnets:db1 and DB2
+click on databse--> standard,mysql,version:8.0.35,free tier,
+settings-->credentendials: self managed,pw:koti2025,burstable:db.t4,sg:rds-sg
 
 4. Application Tier Setup
 Deploy application-tier resources, including the configuration of an internal load balancer for traffic distribution within the tier.
