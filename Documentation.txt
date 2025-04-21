@@ -134,7 +134,7 @@ Ex: sudo aws s3 cp s3://demo-3tier-project/application-code/app-tier/ app-tier -
 ls ---> You will see 'app-tier' folder
 
 cd app-tier/ 
-npm install
+npm install  #npm means Node port manager 
 ls ----> You will see 'index.js' file. We have to start that.
 
 pm2 start index.js (You will see the status as 'online')
@@ -155,7 +155,8 @@ It should return: This is the health check.
 With this we have completed the application configuration.
 
 4.2. Creation of Internal Load Balancer for App Tier
-
+before going LB --> create target groups-->select instance-->name:app-internal-TG, protocol http:4000, health check path:/health--> and select app tier instance --> click on including on pending below
+and create Load Balancer-->choose app LB--> Name:App-internal-LB--> select multi AZ's and select APp1 ,app2 subnets-->security group:internal-Alb-sg--> defaultaction: app-internal target--> create LB 
 Goto the downloaded code folder in local system ----> Open nginx.conf file and in the end of the file you will see something like below;
         #proxy for internal lb
         location /api/{
@@ -172,7 +173,8 @@ This one we are going to copy to the webserver in sometime.
 Step 5
 ~~~~~~~~~~~
 Creation of Web tier resources including External Load Balancer
-
+create public instance-->name:web-tier-instance--> ami-linux -->subnet:public-1--> enable public ip--> SG:WEb-SG--> Attatch IAM role 
+connect through session manager 
 sudo -su ec2-user (To work as an ec2-user)    
 
 cd /home/ec2-user
