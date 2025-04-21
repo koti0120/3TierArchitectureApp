@@ -13,9 +13,9 @@ A 3-Tier Architecture app separates the presentation, application, and database 
 - **RDS**  
 - **Route 53**
 
-```
-🚀 3 Tier-Architecture
-``` 
+
+## 🚀 **3 Tier-Architecture:**
+
 
 ![alt text](image/3-Tier-Architecture.jpg)
 
