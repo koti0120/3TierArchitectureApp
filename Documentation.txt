@@ -56,7 +56,7 @@ Step 3
 
 Go into the following path of cloned code "application-code/app-tier/DbConfig.js" and open 'Dbconfig.js' file and change the things accordingly as shown below;
 module.exports = Object.freeze({
-    DB_HOST: 'YOUR-DATABASE-ENDPOINT.ap-south-1.rds.amazonaws.com',
+    DB_HOST: 'database-1.cp2ukiwkoxxg.ap-south-1.rds.amazonaws.com',
     DB_USER: 'admin',
     DB_PWD: 'koti2025',
     DB_DATABASE: 'webappdb'
@@ -156,7 +156,7 @@ With this we have completed the application configuration.
 
 4.2. Creation of Internal Load Balancer for App Tier
 before going LB --> create target groups-->select instance-->name:app-internal-TG, protocol http:4000, health check path:/health--> and select app tier instance --> click on including on pending below
-and create Load Balancer-->choose app LB--> Name:App-internal-LB--> select multi AZ's and select APp1 ,app2 subnets-->security group:internal-Alb-sg--> defaultaction: app-internal target--> create LB 
+and create Load Balancer-->choose app LB--> Name:App-internal-LB-->select internal facing--> select multi AZ's and select APp1 ,app2 subnets-->security group:internal-Alb-sg--> defaultaction: app-internal target--> create LB 
 Goto the downloaded code folder in local system ----> Open nginx.conf file and in the end of the file you will see something like below;
         #proxy for internal lb
         location /api/{
@@ -210,7 +210,8 @@ sudo chkconfig nginx on
 
 To check the output of the App, we can check using the Web-Tier-Instance public IP. But before checking lets open port no 80 with http, Anywhere IPv4, 0.0.0.0/0 ---> Save rules ----> Now paste the pubic ip of Web-Tier-Instance in new tab of browser ----> You will see the app ----> Enter the data in the app
 
-
+Create External Lb create target groups-->select instance-->name:External-web-TG, protocol http:80, health check path:/--> and select web tier instance --> click on including on pending below
+and create Load Balancer-->choose app LB--> Name:External-web-LB-->select--> internet facing--> select multi AZ's and select web1 ,web2 
 This is about 3 tier architecture with HA and Fault Tolerance.
 
 
